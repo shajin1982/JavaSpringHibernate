@@ -14,7 +14,6 @@
 </head>
 <body>
 <div class="header" id="demo">
-    <div class="canvaszz"></div>
     <canvas id="canvas"></canvas>
 </div>
 <script>
