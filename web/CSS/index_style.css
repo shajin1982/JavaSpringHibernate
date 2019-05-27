@@ -11,13 +11,13 @@ body {margin:0 auto;overflow:hidden;}
 	}
 .header canvas {
 	width:100%;height:auto/*默认全屏显示 可自己设置高度640px*/;
-	display:inline-block;
-	vertical-align:baseline;
+	display:inline-block;vertical-align:baseline
 	position:absolute;
 	z-index:-1;
 	}
 .header .canvaszz{  /*用来解决视频右键菜单，用于视频上面的遮罩层*/
 	width:100%;
+	background-image: url(img/in_top_bj.jpg);
 	height:640px;
 	position:absolute;
 	z-index:10;
@@ -38,6 +38,7 @@ body {margin:0 auto;overflow:hidden;}
       opacity: 0.3;
 	}
 .header .top_logo{
+	background-image: url(img/top_logo.png);
 	margin:0 auto;
 	width:750px;
 	height:200px;
@@ -59,6 +60,7 @@ body {margin:0 auto;overflow:hidden;}
 	}
 .header .nav a.gv { 
 	text-decoration:none;
+	background:url(img/nav_gv.png) repeat 0px 0px;
 	width: 130px; 
 	height: 43px; 
 	display: block; 
@@ -74,6 +76,7 @@ body {margin:0 auto;overflow:hidden;}
 	 	
 }
 .header .nav a.gv:hover {
+	background: url(img/nav_gv.png) repeat 0px -43px;
 	color:#1d7eb8;
 	-webkit-box-shadow: 0 0 6px #1d7eb8;
 	transition-duration: 0.5s;
