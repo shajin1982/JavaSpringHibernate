@@ -11,12 +11,35 @@
     <title>$Title$</title>
     <script src="jQuery/jquery-3.1.1.min.js"></script>
     <link href="CSS/index_style.css" rel="stylesheet" type="text/css">
+    <script src="http://rescdn.qqmail.com/node/ww/wwopenmng/js/sso/wwLogin-1.0.0.js"></script>
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 </head>
 <body>
-<div class="header" id="demo">
-    <canvas id="canvas"></canvas>
+<div class="">
+    <canvas id="canvas" style="position:absolute;z-index:-1"></canvas>
+    <div class="className" id="wx_reg" style="width: 400px;height: 400px"></div>
 </div>
 <script>
+    $(document).ready(function(){
+        $('.className').css({
+            position:'absolute',
+            left: ($(window).width() - $('.className').outerWidth())/2,
+            top: ($(window).height() - $('.className').outerHeight())/2 + $(document).scrollTop()
+        });
+    });
+    //企业微信二维码构造
+    window.WwLogin({
+        "id": "wx_reg",
+        "appid": "wx60fb60c92a367e5d",
+        "agentid": "1000045",
+        "redirect_uri": "http://wxwork.chem-family.com:4545/JavaSpringHibernate/web",
+        "state": "",
+        "href": ""
+    });
+</script>
+<script>
+
     //宇宙特效
     "use strict";
     var canvas = document.getElementById('canvas'),
