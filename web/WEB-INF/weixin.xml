@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<qweixin> 
+  <access_token> 
+    <access_token_value>1111</access_token_value>  
+    <access_token_time>55555</access_token_time> 
+  </access_token> 
+</qweixin>
