@@ -2,7 +2,21 @@
 
 <qweixin> 
   <access_token> 
-    <access_token_value>1111</access_token_value>  
-    <access_token_time>55555</access_token_time> 
-  </access_token> 
+    <access_token_value>1ulf3TvNwhBRrnVawIYbvAEXFBwSQPzFk8KtVwZNDJAB8LxEPqu6Ko4C9-_nkzSH86sIfPNt-f8osBF4Rez_Fkfj_te5tHOKTePWmmRxSqNBGf3ttfMcfVrG7sRgRj_AOfNL1pDU0lG0dD304jLCJAzO0O0bebnUx0-XKODuQ3p0oWCtsakUTv7nbh5igkzamfuALOS4HLt3K4FLwWZZ_g</access_token_value>  
+    <access_token_time>2019-05-28 22:13:16</access_token_time> 
+  </access_token>  
+  <secrets> 
+    <secret> 
+      <name>原点</name>  
+      <value>2svuF-PL9uvhDjKqUQovG1_WXtdt60bUZ6oypuXCMk8</value>  
+      <agentId>1000045</agentId> 
+    </secret> 
+  </secrets>  
+  <request-urls> 
+    <request-url> 
+      <name>GetToken</name>  
+      <url>https://qyapi.weixin.qq.com/cgi-bin/gettoken</url> 
+    </request-url> 
+  </request-urls>  
+  <corpid>wx60fb60c92a367e5d</corpid> 
 </qweixin>
