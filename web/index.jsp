@@ -33,7 +33,7 @@
         "id": "wx_reg",
         "appid": "wx60fb60c92a367e5d",
         "agentid": "1000045",
-        "redirect_uri": "http://wxwork.chem-family.com:4545/JavaSpringHibernate/web",
+        "redirect_uri": "http://wxwork.chem-family.com:4545/JavaSpringHibernate/web/home.html",
         "state": "",
         "href": ""
     });
