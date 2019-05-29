@@ -8,11 +8,8 @@ import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
-
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -132,10 +129,17 @@ public class WeiXinFactory {
                 String param = "access_token=" + access_token + "&id=" + department;
                 String departmentJson = HttpRequest.sendGet(Url, param);
                 JSONObject json = JSONObject.fromObject(departmentJson);
-                JSONObject member=new JSONObject();
-                member.put("id",department);
-                member.put("name",json.get("department").toString());
-                departmentJsonArray.add(member);
+                JSONObject member=new JSONObject();//创建部门json数组
+                JSONArray jsonArray=JSONArray.fromObject(json.getString("department"));//获取部门json数组
+                for(Object oj:jsonArray){//foreach 遍历部门json数组
+                    JSONObject jo=(JSONObject)oj;//强制转换object为json对象
+                    if(jo.getString("id").equals(department)){//判断是否部门id和目前要查询的部门id是否一致，一致的进行封装（因为企业微信会返回所有这个id下的部门）
+                        //封装部门为json数组
+                        member.put("id",department);
+                        member.put("name",jo.getString("name"));
+                    }
+                }
+                departmentJsonArray.add(member);//添加数组
             }
             return departmentJsonArray;
         }else {

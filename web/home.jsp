@@ -16,7 +16,7 @@
 </head>
 <body class="text-center" style="background-color: #9acfea">
 <img src="image/logo_hq.png" style="width: 150px;height: 150px;margin-top:10px">
-<h1 style="margin-top: 30px;color: #2b669a;font-family: 微软雅黑" >南通化轻内部平台</h1>
+<h1 style="margin-top: 30px;color: #2b669a;font-family: 微软雅黑">南通化轻内部平台</h1>
 <div class="btn-group">
     <a class="btn btn-lg btn-primary" href="#">
         <i class="fa fa-handshake-o fa-5x pull-left"></i> 人力<br>行政<br>中心</a>
@@ -32,14 +32,15 @@
         <i class="fa fa-line-chart fa-5x pull-left"></i> 业务<br>部门</a>
 </div>
 <div>
-${WXUser.userid}
+    ${WXUser.userid}
+    ${WXUser.name}
+    ${WXUser.department}
+    ${WXUser.position}
 </div>
 </body>
 <script>
     $(document).ready(function () {
-        $.ajax({
-
-        });
+        $.ajax({});
         $('.btn-group').css({
             position: 'absolute',
             left: ($(window).width() - $('.btn-group').outerWidth()) / 2,

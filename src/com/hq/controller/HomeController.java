@@ -17,12 +17,10 @@ public class HomeController {
         String uid=wf.getUid("原点",code);
         WXUser wxuser=new WXUser();
         wxuser.setUserid(uid);
-        JSONObject json=wf.getUser("原点","shalq");
-        System.out.println(json.getString("name"));
-        System.out.println(json.getString("position"));
-        System.out.println(json.getString("department"));
-        JSONArray departmentJson=wf.getDepartment("原点",json.getString("department"));
-        System.out.println(departmentJson.toString());
+        JSONObject json=wf.getUser("原点",uid);
+        wxuser.setName(json.getString("name"));
+        wxuser.setPosition(json.getString("position"));
+        wxuser.setDepartment(wf.getDepartment("原点",json.getString("department")));
         model.addAttribute("WXUser", wxuser);
         return "home";
     }

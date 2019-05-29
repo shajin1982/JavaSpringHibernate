@@ -1,9 +1,11 @@
 package com.hq.bean;
 
+import net.sf.json.JSONArray;
+
 public class WXUser {
     private String userid;//成员UserID
     private String name;//成员名称
-    private String department;//成员所属部门id列表，仅返回该应用有查看权限的部门id
+    private JSONArray department;//成员所属部门id列表，仅返回该应用有查看权限的部门id
     private String order;//	部门内的排序值，默认为0。数量必须和department一致，数值越大排序越前面。值范围是[0, 2^32)
     private String position;//职务信息；第三方仅通讯录应用可获取
     private String mobile;//手机号码，第三方仅通讯录应用可获取
@@ -26,11 +28,11 @@ public class WXUser {
         this.name = name;
     }
 
-    public String getDepartment() {
+    public JSONArray getDepartment() {
         return department;
     }
 
-    public void setDepartment(String department) {
+    public void setDepartment(JSONArray department) {
         this.department = department;
     }
 
