@@ -18,12 +18,8 @@ import java.util.Date;
 import java.util.List;
 
 public class WeiXinFactory {
-    public static void main(String[] args) {
-        WeiXinFactory wf=new WeiXinFactory();
-        System.out.println(wf.getToken("原点"));
-    }
 
-    public String getToken(String secretName) {
+    private String getToken(String secretName) {
         String Url = "";
         String Secret = "";
         String Corpid = "";
@@ -95,7 +91,36 @@ public class WeiXinFactory {
     }
 
     public String getUid(String secretName,String code){
+        String Url="";
+        try {
+            //1、获取解析器
+            SAXReader saxReader = new SAXReader();
+            //2、获得 document 文档对象
+            Document doc = saxReader.read("web/WEB-INF/weixin.xml");
+            //3、获取根元素
+            Element rootElement = doc.getRootElement();
+            //4、获取根元素下面的子元素
+            List<Element> childElements = rootElement.elements();
+            //遍历子元素
+            for (Element qweixinElement : childElements) {
+                if (qweixinElement.getName().equals("request-urls")) {
+                    List<Element> requesturlsElements = qweixinElement.elements();
+                    for (Element requesturlsElement : requesturlsElements) {
+                        if (requesturlsElement.element("name").getText().equals("GetUserInfo")) {
+                            Url = requesturlsElement.element("url").getText();
+                        }
+                    }
+                }
+            }
+            String access_token=this.getToken(secretName);
+            String param="access_token="+access_token+"&code="+code;
+            String userJson=HttpRequest.sendGet(Url,param);
+            JSONObject json = JSONObject.fromObject(userJson);
+            return json.getString("UserId");
+        }
+        catch ( DocumentException  e) {
+            e.printStackTrace();
+        }
         return null;
     }
-
 }

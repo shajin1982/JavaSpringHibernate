@@ -16,7 +16,11 @@
     <request-url> 
       <name>GetToken</name>  
       <url>https://qyapi.weixin.qq.com/cgi-bin/gettoken</url> 
-    </request-url> 
+    </request-url>
+    <request-url>
+      <name>GetUserInfo</name>
+      <url>https://qyapi.weixin.qq.com/cgi-bin/user/getuserinfo</url>
+    </request-url>
   </request-urls>  
   <corpid>wx60fb60c92a367e5d</corpid> 
 </qweixin>

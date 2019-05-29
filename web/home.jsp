@@ -1,8 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<%--
+  Created by IntelliJ IDEA.
+  User: Administrator
+  Date: 2019/5/29
+  Time: 13:44
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>jsp</title>
     <script src="jQuery/jquery-3.1.1.min.js"></script>
     <link href="bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" type="text/css">
     <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
@@ -26,11 +32,14 @@
         <i class="fa fa-line-chart fa-5x pull-left"></i> 业务<br>部门</a>
 </div>
 <div>
-
+${uid}
 </div>
 </body>
 <script>
     $(document).ready(function () {
+        $.ajax({
+
+        });
         $('.btn-group').css({
             position: 'absolute',
             left: ($(window).width() - $('.btn-group').outerWidth()) / 2,

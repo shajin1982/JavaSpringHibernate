@@ -1,8 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<%--
+  Created by IntelliJ IDEA.
+  User: Administrator
+  Date: 2019/5/29
+  Time: 13:44
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>jsp</title>
     <script src="jQuery/jquery-3.1.1.min.js"></script>
     <link href="CSS/index_style.css" rel="stylesheet" type="text/css">
     <script src="http://rescdn.qqmail.com/node/ww/wwopenmng/js/sso/wwLogin-1.0.0.js"></script>
