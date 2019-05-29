@@ -1,5 +1,6 @@
 package com.hq.wx;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -90,8 +91,60 @@ public class WeiXinFactory {
         return null;
     }
 
-    public String getUid(String secretName,String code){
-        String Url="";
+    public String getUid(String secretName, String code) {
+        String Url = "";
+        Url = this.getUrl("GetUserInfo");
+        if (Url != null) {
+            String access_token = this.getToken(secretName);
+            String param = "access_token=" + access_token + "&code=" + code;
+            String userJson = HttpRequest.sendGet(Url, param);
+            JSONObject json = JSONObject.fromObject(userJson);
+            return json.getString("UserId");
+        } else {
+            return null;
+        }
+    }
+
+    public JSONObject getUser(String secretName, String userid) {
+        String Url = "";
+        Url = this.getUrl("GetUser");
+        if (Url != null) {
+            String access_token = this.getToken(secretName);
+            String param = "access_token=" + access_token + "&userid=" + userid;
+            String userJson = HttpRequest.sendGet(Url, param);
+            JSONObject json = JSONObject.fromObject(userJson);
+            return json;
+        } else {
+            return null;
+        }
+    }
+
+    public JSONArray getDepartment(String secretName,String departmentsId) {
+        String Url = "";
+        Url = this.getUrl("GetDepartment");
+        String departmentId = departmentsId.substring(1,departmentsId.length()-1);
+        String[] departmentIdArray = departmentId.split(",");
+        //构建json数组
+        JSONArray departmentJsonArray=new JSONArray();
+        if(Url!=null){
+            for (String department:departmentIdArray){
+                String access_token = this.getToken(secretName);
+                String param = "access_token=" + access_token + "&id=" + department;
+                String departmentJson = HttpRequest.sendGet(Url, param);
+                JSONObject json = JSONObject.fromObject(departmentJson);
+                JSONObject member=new JSONObject();
+                member.put("id",department);
+                member.put("name",json.get("department").toString());
+                departmentJsonArray.add(member);
+            }
+            return departmentJsonArray;
+        }else {
+            return null;
+        }
+    }
+
+    private String getUrl(String requestName) {
+        String Url = "";
         try {
             //1、获取解析器
             SAXReader saxReader = new SAXReader();
@@ -106,19 +159,14 @@ public class WeiXinFactory {
                 if (qweixinElement.getName().equals("request-urls")) {
                     List<Element> requesturlsElements = qweixinElement.elements();
                     for (Element requesturlsElement : requesturlsElements) {
-                        if (requesturlsElement.element("name").getText().equals("GetUserInfo")) {
+                        if (requesturlsElement.element("name").getText().equals(requestName)) {
                             Url = requesturlsElement.element("url").getText();
                         }
                     }
                 }
             }
-            String access_token=this.getToken(secretName);
-            String param="access_token="+access_token+"&code="+code;
-            String userJson=HttpRequest.sendGet(Url,param);
-            JSONObject json = JSONObject.fromObject(userJson);
-            return json.getString("UserId");
-        }
-        catch ( DocumentException  e) {
+            return Url;
+        } catch (DocumentException e) {
             e.printStackTrace();
         }
         return null;

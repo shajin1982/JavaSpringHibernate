@@ -32,7 +32,7 @@
         <i class="fa fa-line-chart fa-5x pull-left"></i> 业务<br>部门</a>
 </div>
 <div>
-${uid}
+${WXUser.userid}
 </div>
 </body>
 <script>
