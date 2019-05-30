@@ -21,6 +21,7 @@ public class HomeController {
         wxuser.setName(json.getString("name"));
         wxuser.setPosition(json.getString("position"));
         wxuser.setDepartment(wf.getDepartment("原点",json.getString("department")));
+        wxuser.setAvatar(json.getString("avatar"));
         model.addAttribute("WXUser", wxuser);
         return "home";
     }

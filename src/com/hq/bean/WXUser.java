@@ -11,6 +11,15 @@ public class WXUser {
     private String mobile;//手机号码，第三方仅通讯录应用可获取
     private String email;//邮箱，第三方仅通讯录应用可获取
     private String is_leader_in_dept;//表示在所在的部门内是否为上级。；第三方仅通讯录应用可获取
+    private String avatar;//头像url。注：如果要获取小图将url最后的”/0”改成”/100”即可。第三方仅通讯录应用可获取
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     public String getUserid() {
         return userid;
