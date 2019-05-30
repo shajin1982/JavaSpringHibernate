@@ -10,24 +10,53 @@
 <head>
     <title>jsp</title>
     <script src="jQuery/jquery-3.1.1.min.js"></script>
-    <link href="CSS/index_style.css" rel="stylesheet" type="text/css">
+    <link href="CSS/indexstyles.css" rel="stylesheet" type="text/css">
     <script src="http://rescdn.qqmail.com/node/ww/wwopenmng/js/sso/wwLogin-1.0.0.js"></script>
     <link href="bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" type="text/css">
     <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 </head>
 <body>
-<div class="">
-    <canvas id="canvas" style="position:absolute;z-index:-1"></canvas>
-    <div class="className" id="wx_reg" style="width: 400px;height: 400px"></div>
+<%--<div class="">--%>
+<%--    <canvas id="canvas" style="position:absolute;z-index:-1"></canvas>--%>
+<%--    <div class="className" id="wx_reg" style="width: 400px;height: 400px"></div>--%>
+<%--</div>--%>
+<div class="jq22-container" style="padding-top:100px">
+    <div class="login-wrap">
+        <div class="login-html">
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1"
+                                                                                     class="tab">扫描二维码登录</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">账号密码登录</label>
+            <div class="login-form">
+                <div class="sign-in-htm" >
+                    <div class="group" id="wx_reg">
+                    </div>
+                </div>
+                <div class="sign-up-htm">
+                    <div class="group">
+                        <label for="user" class="label">用户名</label>
+                        <input id="user" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">密码</label>
+                        <input id="pass" type="password" class="input" data-type="password">
+                    </div>
+                    <div class="group">
+                        <input id="check" type="checkbox" class="check" checked>
+                        <label for="check"><span class="icon"></span> 记住账号密码</label>
+                    </div>
+                    <div class="group">
+                        <input type="submit" class="button" value="登录">
+                    </div>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <a href="#">忘记密码</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
-    $(document).ready(function(){
-        $('.className').css({
-            position:'absolute',
-            left: ($(window).width() - $('.className').outerWidth())/2,
-            top: ($(window).height() - $('.className').outerHeight())/2 + $(document).scrollTop()
-        });
-    });
     //企业微信二维码构造
     window.WwLogin({
         "id": "wx_reg",
@@ -37,113 +66,6 @@
         "state": "",
         "href": ""
     });
-</script>
-<script>
-
-    //宇宙特效
-    "use strict";
-    var canvas = document.getElementById('canvas'),
-        ctx = canvas.getContext('2d'),
-        w = canvas.width = window.innerWidth,
-        h = canvas.height = window.innerHeight,
-
-        hue = 217,
-        stars = [],
-        count = 0,
-        maxStars = 1300;//星星数量
-
-    var canvas2 = document.createElement('canvas'),
-        ctx2 = canvas2.getContext('2d');
-    canvas2.width = 100;
-    canvas2.height = 100;
-    var half = canvas2.width / 2,
-        gradient2 = ctx2.createRadialGradient(half, half, 0, half, half, half);
-    gradient2.addColorStop(0.025, '#CCC');
-    gradient2.addColorStop(0.1, 'hsl(' + hue + ', 61%, 33%)');
-    gradient2.addColorStop(0.25, 'hsl(' + hue + ', 64%, 6%)');
-    gradient2.addColorStop(1, 'transparent');
-
-    ctx2.fillStyle = gradient2;
-    ctx2.beginPath();
-    ctx2.arc(half, half, half, 0, Math.PI * 2);
-    ctx2.fill();
-
-    // End cache
-
-    function random(min, max) {
-        if (arguments.length < 2) {
-            max = min;
-            min = 0;
-        }
-
-        if (min > max) {
-            var hold = max;
-            max = min;
-            min = hold;
-        }
-
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    function maxOrbit(x, y) {
-        var max = Math.max(x, y),
-            diameter = Math.round(Math.sqrt(max * max + max * max));
-        return diameter / 2;
-        //星星移动范围，值越大范围越小，
-    }
-
-    var Star = function () {
-
-        this.orbitRadius = random(maxOrbit(w, h));
-        this.radius = random(60, this.orbitRadius) / 8;
-        //星星大小
-        this.orbitX = w / 2;
-        this.orbitY = h / 2;
-        this.timePassed = random(0, maxStars);
-        this.speed = random(this.orbitRadius) / 50000;
-        //星星移动速度
-        this.alpha = random(2, 10) / 10;
-
-        count++;
-        stars[count] = this;
-    }
-
-    Star.prototype.draw = function () {
-        var x = Math.sin(this.timePassed) * this.orbitRadius + this.orbitX,
-            y = Math.cos(this.timePassed) * this.orbitRadius + this.orbitY,
-            twinkle = random(10);
-
-        if (twinkle === 1 && this.alpha > 0) {
-            this.alpha -= 0.05;
-        } else if (twinkle === 2 && this.alpha < 1) {
-            this.alpha += 0.05;
-        }
-
-        ctx.globalAlpha = this.alpha;
-        ctx.drawImage(canvas2, x - this.radius / 2, y - this.radius / 2, this.radius, this.radius);
-        this.timePassed += this.speed;
-    }
-
-    for (var i = 0; i < maxStars; i++) {
-        new Star();
-    }
-
-    function animation() {
-        ctx.globalCompositeOperation = 'source-over';
-        ctx.globalAlpha = 0.5; //尾巴
-        ctx.fillStyle = 'hsla(' + hue + ', 64%, 6%, 2)';
-        ctx.fillRect(0, 0, w, h)
-
-        ctx.globalCompositeOperation = 'lighter';
-        for (var i = 1, l = stars.length; i < l; i++) {
-            stars[i].draw();
-        }
-        ;
-
-        window.requestAnimationFrame(animation);
-    }
-
-    animation();
 </script>
 </body>
 </html>
