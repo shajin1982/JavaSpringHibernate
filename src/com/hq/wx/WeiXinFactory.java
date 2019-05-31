@@ -26,7 +26,7 @@ public class WeiXinFactory {
             //1、获取解析器
             SAXReader saxReader = new SAXReader();
             //2、获得 document 文档对象
-            Document doc = saxReader.read("web/WEB-INF/weixin.xml");
+            Document doc = saxReader.read(this.getXmlPath());
             //3、获取根元素
             Element rootElement = doc.getRootElement();
             //获取根元素名称
@@ -72,7 +72,7 @@ public class WeiXinFactory {
                 String nowtime = df.format(new Date());
                 childElements.get(0).element("access_token_value").setText(access_token);
                 childElements.get(0).element("access_token_time").setText(nowtime);
-                FileOutputStream out = new FileOutputStream("web/WEB-INF/weixin.xml");
+                FileOutputStream out = new FileOutputStream(this.getXmlPath());
                 OutputFormat format = OutputFormat.createPrettyPrint();
                 format.setEncoding("utf-8");
                 XMLWriter writer = new XMLWriter(out, format);
@@ -153,7 +153,7 @@ public class WeiXinFactory {
             //1、获取解析器
             SAXReader saxReader = new SAXReader();
             //2、获得 document 文档对象
-            Document doc = saxReader.read("web/WEB-INF/weixin.xml");
+            Document doc = saxReader.read(this.getXmlPath());
             //3、获取根元素
             Element rootElement = doc.getRootElement();
             //4、获取根元素下面的子元素
@@ -174,5 +174,18 @@ public class WeiXinFactory {
             e.printStackTrace();
         }
         return null;
+    }
+
+    //获取weixin绝对路径
+    public static String getXmlPath()
+    {
+        //file:/D:/JavaWeb/.metadata/.me_tcat/webapps/TestBeanUtils/WEB-INF/classes/
+        String path=Thread.currentThread().getContextClassLoader().getResource("").toString();
+        path=path.replace('/', '\\'); // 将/换成\
+        path=path.replace("file:", ""); //去掉file:
+        path=path.replace("classes\\", ""); //去掉class\
+        path=path.substring(1); //去掉第一个\,如 \D:\JavaWeb...
+        path+="weixin.xml";
+        return path;
     }
 }

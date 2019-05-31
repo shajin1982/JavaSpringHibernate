@@ -2,8 +2,8 @@
 
 <qweixin> 
   <access_token> 
-    <access_token_value>1ulf3TvNwhBRrnVawIYbvAEXFBwSQPzFk8KtVwZNDJAB8LxEPqu6Ko4C9-_nkzSH86sIfPNt-f8osBF4Rez_Fkfj_te5tHOKTePWmmRxSqNBGf3ttfMcfVrG7sRgRj_AOfNL1pDU0lG0dD304jLCJAzO0O0bebnUx0-XKODuQ3p0oWCtsakUTv7nbh5igkzamfuALOS4HLt3K4FLwWZZ_g</access_token_value>  
-    <access_token_time>2019-05-28 22:13:16</access_token_time> 
+    <access_token_value>SZJYV6o_pfM8UfJzxlAMMGtGhfmARNtemyrrStLLsroyFAGdQvOOB0STkFG3nESbNfP9xsGoV-p5HLWPZowFeZf2rkokezKHnJBPjqAkE-YLDN_afM88jinNtmFu2aCP4CLq9y_ECN1LstrrPj7AFpizrl_vps6ijprhn7vYP_hh6S8NerzHszh-LqM4_SnU7O3K2J-Fwc9EeD_l7t1IhQ</access_token_value>  
+    <access_token_time>2019-05-30 12:44:13</access_token_time>
   </access_token>  
   <secrets> 
     <secret> 
@@ -16,11 +16,19 @@
     <request-url> 
       <name>GetToken</name>  
       <url>https://qyapi.weixin.qq.com/cgi-bin/gettoken</url> 
-    </request-url>
-    <request-url>
-      <name>GetUserInfo</name>
-      <url>https://qyapi.weixin.qq.com/cgi-bin/user/getuserinfo</url>
-    </request-url>
+    </request-url>  
+    <request-url> 
+      <name>GetUserInfo</name>  
+      <url>https://qyapi.weixin.qq.com/cgi-bin/user/getuserinfo</url> 
+    </request-url>  
+    <request-url> 
+      <name>GetUser</name>  
+      <url>https://qyapi.weixin.qq.com/cgi-bin/user/get</url> 
+    </request-url>  
+    <request-url> 
+      <name>GetDepartment</name>  
+      <url>https://qyapi.weixin.qq.com/cgi-bin/department/list</url> 
+    </request-url> 
   </request-urls>  
   <corpid>wx60fb60c92a367e5d</corpid> 
 </qweixin>
